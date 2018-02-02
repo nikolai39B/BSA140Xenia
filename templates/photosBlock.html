@@ -1,0 +1,8 @@
+<div>
+	{% for ii in range(photoSize) %}
+		<div class="{{ cssClass }}" style="margin: 5px 0; float: left">
+			{{ columns[ii] | safe }}
+		</div>
+	{% endfor %}
+</div>
+<div style="clear: both;"></div> 

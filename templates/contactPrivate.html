@@ -1,0 +1,56 @@
+{% set ii = 0 %}
+{% for contact in contacts %}
+	<!-- Name and Position -->
+	<div class="content-header">
+		{{ contact.firstName }} {{ contact.lastName }}
+		{% if contact.position != '' and contact.position != None %}
+			- {{ contact.position }}
+		{% endif %}
+	</div>
+	
+	<div class="content">
+		<!-- Cell Number -->
+		{% if contact.cellPhoneNumber != '' and contact.cellPhoneNumber != None %}
+			<span class="login">Mobile:</span> ({{ contact.cellPhoneNumber[:3] }})
+			{{ contact.cellPhoneNumber[3:6] }}-{{ contact.cellPhoneNumber[6:] }}<br>
+		{% endif %}
+		
+		<!-- Home Number -->
+		{% if contact.homePhoneNumber != '' and contact.homePhoneNumber != None %}
+			<span class="login">Home:</span> ({{ contact.homePhoneNumber[:3] }})
+			{{ contact.homePhoneNumber[3:6] }}-{{ contact.homePhoneNumber[6:] }}<br>
+		{% endif %}
+		
+		<!-- Email -->
+		{% if contact.email != '' and contact.email != None %}
+			<span class="login">Email:</span> {{ contact.email }}<br>
+		{% endif %}
+		
+		<!-- Alt Email -->
+		{% if contact.altEmail != '' and contact.altEmail != None %}
+			<span class="login">Alternate Email:</span> {{ contact.altEmail }}<br>
+		{% endif %}
+		
+		<!-- Address -->
+		{% if contact.street != '' and contact.street != None %}
+			<span class="login">Address:</span> {{ contact.street }}<br>
+			<span class="login"></span> {{ contact.city }}, {{ contact.state }} {{ contact.zip }}<br>
+		{% endif %}
+		
+		{% if displayContactBar %}
+			<div id="photobar">
+				<!-- ContactBar Links -->
+				{% if adminStatus <= 2 %} <!-- owner, admin, or poster -->
+					<a class="topbar-link" href="/add_contact?contactId={{ contact.key().id() }}">
+					Edit Contact</a> | 
+					<a class="topbar-link" href="/delete_contact?contactId={{ contact.key().id() }}">
+					Delete Contact</a>
+				{% endif %}
+			</div>
+		{% endif %}
+	</div>
+	{% if ii < numContacts - 1 %}
+		<br>
+	{% endif %}
+	{% set ii = ii + 1 %}
+{% endfor %}

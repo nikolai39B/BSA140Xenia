@@ -1,0 +1,19 @@
+<div class="content-header">
+	{{ announcement.title }}<br>
+</div>
+<div class="content-centered">
+	Posted by: {{ creator }} on {{ date }} at {{ time }}<br>
+</div>
+<div class="content">	
+	<span class="tab"></span>{{ announcement.content }}
+</div>
+{% if displayAnnouncementbar == None or displayAnnouncementbar %}
+	<div id="photobar">
+		<!-- Announcementbar Links -->
+		{% if adminStatus <= 2 %} <!-- owner, admin, or poster -->
+			<a class="topbar-link" href="/edit_announcement?id={{ announcement.key().id() }}">Edit Announcement</a> | 
+			<a class="topbar-link" href="/delete_announcement?id={{ announcement.key().id() }}">Delete Announcement</a>
+		{% endif %}
+	</div>
+{% endif %}
+<br>

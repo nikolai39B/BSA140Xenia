@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Delete Link
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			{% if error == '' %}
+				<div id="header">
+					Are you sure that you wish to delete this link?
+				</div>
+				
+				<!-- Content -->
+				<div class="content">
+					{{ link | safe }}
+				</div>
+				<div class="content-centered">
+					<form method="post">
+						<input type="hidden" name="linkId" value="{{ linkId }}">
+						<input class="button-link" type="submit" value="Delete">
+					</form>
+				</div>
+			{% else %}
+				<div class="content-centered">
+					<div class="error">{{ error }}</div>
+				</div>
+			{% endif %}
+			
+			<!-- Return Button -->
+			<div class="content-centered">
+				<form action="/links">
+					<input class="button-link" type="submit" value="Return">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

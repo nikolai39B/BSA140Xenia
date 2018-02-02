@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Database
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				This is the troop 140 advancement database. To view or modify the database, please click the
+				links below.
+			</div>
+			
+			<div id="footer">
+				Unfortunately, this feature is not implemented yet. Please check back later.
+			</div>
+		</div>
+	</body>
+</html>

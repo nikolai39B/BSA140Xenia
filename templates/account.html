@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Manage Account
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				You may edit your account details, contact info, and password using the forms below.
+			</div>
+			
+			<!-- Change Username -->
+			<div class="content-header">
+				Change Username
+			</div>
+			<div class="content">
+				<form method="post">
+					<!-- This is here to squash autocomplete -->
+					<input style="display:none" type="text" name="fakeusernameremembered"/>
+					<input style="display:none" type="password" name="fakepasswordremembered"/>
+					
+					<label>
+						<span class="login">New Username:</span>
+						<input class="textbox" type="text" name="newUsername" value="{{ newUsername }}">
+					</label>
+					<br>
+					<label>
+						<span class="login">Password:</span>
+						<input class="textbox" type="password" name="password">
+					</label>
+					<input type="hidden" name="form" value="changeUsername">
+					{% if usernameError != '' %}
+						<div class="error">{{ usernameError }}</div>
+					{% endif %}
+					{% if usernameMessage != '' %}
+						<div class="content-centered" style="font-weight: bold">{{ usernameMessage }}</div>
+					{% endif %}
+					<div style="text-align: center">
+						<input class="button-link" type="submit" name="change" value="Change">
+					</div>
+				</form>
+			</div>
+			<br>
+			
+			<!-- Change Password -->
+			<div class="content-header">
+				Change Password
+			</div>
+			<div class="content">
+				<form method="post">
+					<label>
+						<span class="login">Old Password:</span>
+						<input class="textbox" type="password" name="oldPassword">
+					</label>
+					<br>
+					<label>
+						<span class="login">New Password:</span>
+						<input class="textbox" type="password" name="newPassword">
+					</label>
+					<br>
+					<label>
+						<span class="login">Verify New Password:</span>
+						<input class="textbox" type="password" name="verify">
+					</label>
+					<input type="hidden" name="form" value="changePassword">
+					{% if passwordError != '' %}
+						<div class="error">{{ passwordError }}</div>
+					{% endif %}
+					{% if passwordMessage != '' %}
+						<div class="content-centered" style="font-weight: bold">{{ passwordMessage }}</div>
+					{% endif %}
+					<div style="text-align: center">
+						<input class="button-link" type="submit" name="change" value="Change">
+					</div>
+				</form>
+			</div>
+			<br>
+			
+			<!-- Create Contact -->
+			<div class="content-header">
+				Update Contact Info
+			</div>
+			{{ contact | safe }}
+			<div class="content-centered">
+				<form method="post">
+					<input type="hidden" name="form" value="updateContact">
+					<input class="button-link" type="submit" value="Update">
+				</form>
+			</div>
+			
+			{% if adminStatus <= 0 %} <!-- owner -->
+				<br>
+				<!-- Reset Other Account Password -->
+				<div class="content-header">
+					Reset Other Account Password
+				</div>
+				<div class="content">
+					<form method="post">
+						<label>
+							<span class="login">Account Username:</span>
+							<input class="textbox" type="text" name="accountUsername" value="{{ accountUsername }}">
+						</label>
+						<input type="hidden" name="form" value="resetOtherAccountPassword">
+						{% if resetOtherAccountPasswordError != '' %}
+							<div class="error">{{ resetOtherAccountPasswordError }}</div>
+						{% endif %}
+						{% if resetOtherAccountPasswordMessage != '' %}
+							<div class="content-centered" style="font-weight: bold">{{ resetOtherAccountPasswordMessage }}</div>
+						{% endif %}
+						<div style="text-align: center">
+							<input class="button-link" type="submit" name="reset" value="Reset">
+						</div>
+					</form>
+				</div>
+				<br>
+			{% endif %}
+			
+			<!-- Footer Content -->
+			<div id="footer">
+				Need help managing your account? Please contact the web administrator.
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<a name="{{ photoId }}"/>
+<div class="content-header" style="margin: 5px 0 0 0">
+	{{ title }}
+</div>
+{% if imageLink %}
+	<form action="/photo/{{ photoId }}">
+		<input type="image" class="content-image" style="margin: 5px 0;" src="{{ imageUrl }}" />
+	</form>
+{% else %}
+	<img class="content-image" style="margin: 5px 0;" src="{{ imageUrl }}">
+{% endif %}
+<div class="content-centered" style="font-style: italic; margin: 0">
+	{% if event != None %}
+		<a href="/event/{{ event.key().id() }}">{{ event.name }}</a>
+	{% endif %}
+	{% if event.name and time %}
+		on
+	{% endif %}
+	{% if time %}
+		{{ time.month }}/{{ time.day }}/{{ time.year }}
+	{% endif %}
+</div>
+<div class="content" style="margin: 0">
+	{{ description }}
+</div>
+{% if displayPhotobar %}
+	<div id="photobar">
+		<!-- Photobar Links -->
+		{% if adminStatus <= 2 %} <!-- owner, admin, or poster -->
+			<a class="topbar-link" href="/edit_photo/{{ photoId }}">Edit Photo</a> | 
+			<a class="topbar-link" href="/delete_photo/{{ photoId }}">Delete Photo</a>
+		{% endif %}
+	</div>
+{% endif %}

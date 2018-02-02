@@ -1,0 +1,44 @@
+<div class="event">
+	<!-- Event Name -->
+	<div class="event-title"><a href="/event/{{ event.key().id() }}">{{ event.name }}</a></div>
+	
+	<!-- Departure and Return Times -->
+	<div class="event-info-container">
+		<div class="event-info">
+			Departure: {{ event.departureTime.month }}/{{ event.departureTime.day }}/{{ event.departureTime.year }}
+			at {{ event.departureTime.hour}}:{{ '%02d' % event.departureTime.minute }}
+			{{ departureTimeMeridiem }} 
+		</div>
+		<div class="event-info">
+			Return: {{ event.returnTime.month }}/{{ event.returnTime.day }}/{{ event.returnTime.year }}
+			at {{ event.returnTime.hour}}:{{ '%02d' % event.returnTime.minute }} {{ returnTimeMeridiem }} 
+		</div>
+	</div>
+	
+	<!-- Meet and Event Locations -->
+	<div class="event-info-container">
+		<div class="event-info">
+			Meet Location: {{ event.meetLocation }}<br>
+		</div>
+		<div class="event-info">
+			Outing Location: {{ event.outingLocation }}
+		</div>
+	</div>
+	<br>
+	
+	<!-- Event Description -->
+	<div class="event-description">
+		{{ event.description }}
+	</div>
+	
+	<!-- Photos -->
+	{{ eventPhotosBlock | safe }}
+	
+	<!-- Utility Bar -->
+	{% if adminStatus <= 2 and addUtilityBar %} <!-- owner, admin, or poster -->
+		<div style="text-align: center">
+			<a class="topbar-link" href="/new_event?id={{ eventId }}">Edit Event</a> |
+			<a class="topbar-link" href="/delete_event?id={{ eventId }}">Delete Event</a> 
+		</div>
+	{% endif %}
+</div>

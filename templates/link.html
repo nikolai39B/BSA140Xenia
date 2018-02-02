@@ -1,0 +1,18 @@
+<div class="content-header">
+	<a href={{ link.link }}>{{ link.title }}</a><br>
+</div>
+{% if link.description != '' and link.description != None %}
+	<div class="content">	
+		<span class="tab"></span>{{ link.description }}
+	</div>
+{% endif %}
+{% if displayLinkbar == None or displayLinkbar %}
+	<div id="photobar">
+		<!-- Linkbar Links -->
+		{% if adminStatus <= 2 %} <!-- owner, admin, or poster -->
+			<a class="topbar-link" href="/links?id={{ link.key().id() }}">Edit Link</a> | 
+			<a class="topbar-link" href="/delete_link?id={{ link.key().id() }}">Delete Link</a>
+		{% endif %}
+	</div>
+{% endif %}
+<br>

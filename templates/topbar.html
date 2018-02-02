@@ -1,0 +1,17 @@
+<div id="topbar">
+	<!-- Topbar Links -->
+	{% if adminStatus <= 1 %} <!-- owner or admin -->
+		<a class="topbar-link" href="/create_account">Create Account</a> | 
+	{% endif %}
+	
+	{% if adminStatus <= 3 %} <!-- logged in -->
+		<a class="topbar-link" href="/account">Manage Account</a> | 
+		<a class="topbar-link" href="/files">File Share</a> | 
+		<a class="topbar-link" href="/announcements">Announcements</a> |
+		<a class="topbar-link" href="/logout">Logout</a>
+	{% endif %}
+	
+	{% if adminStatus == 4 %} <!-- not logged in -->
+		<a class="topbar-link" href="/login">Login</a>
+	{% endif %}
+</div>

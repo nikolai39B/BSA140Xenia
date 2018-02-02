@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Unauthorized
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				You are unauthorized to access this page{{ page }}. Please log in first and retry or
+				contact the	web administrator from the contact page.
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Announcements
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				You may edit this announcement using the form below.
+			</div>
+			
+			<!-- Edit Announcement -->
+			{% if adminStatus <= 2 %} <!-- owner, admin, or poster -->
+				<div class="content">
+					<form method="post">
+						<div class="content-header">Edit Announcement</div>
+					
+						<!-- Title -->
+						<label>
+							<span class="login">Title:</span>
+							<input class="textbox" type="text" name="title" value="{{ title }}">
+						</label>
+						<br>		
+					
+						<!-- Content -->
+						<label>
+							<span class="login-two">Content:</span>
+							<textarea class="textarea" name="content">{{ content }}</textarea>
+						</label>		
+						
+						<!-- Error -->
+						{% if error != '' %}
+							<div class="error">{{ error | safe }}</div>
+						{% endif %}
+
+						<!-- Submit Button -->
+						<div style="text-align: center">
+							<input class="button-link" type="submit" name="addAnnouncement" value="Add">
+						</div>
+				
+					</form>
+				</div>
+			{% endif %}
+			
+			<!-- Return Button -->
+			<div class="content-centered">
+				<form action="/announcements">
+					<input class="button-link" type="submit" value="Return">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

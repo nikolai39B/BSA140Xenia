@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Add Photos
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				You may upload images using the form below. Please note that uploading multiple images can take
+				a while (10 - 20 seconds per image), so please be patient and do not upload more than 5 - 10
+				images at a time.
+			</div>
+			
+			<!-- Photo Upload Form -->
+			<form action="{{ uploadUrl }}" method="post" enctype="multipart/form-data">
+				<!-- File Selector -->
+				<label>
+					<span class="login">File:</span>
+					<input class="textbox" type="file" name="file" multiple="multiple">
+				</label>
+				
+				<!-- Event Selector -->
+				<label>
+					<span class="login">Event:</span>
+					<select class="textbox" name="eventId">
+						{{ options | safe }}
+					</select>
+				</label>
+				<br>
+					
+				<!-- Error -->
+				{% if error != '' %}
+					<div class="error">{{ error }}</div>
+				{% endif %}
+				
+				<!-- Upload Button (submits form) -->
+				<div style="text-align: center">
+					<input class="button-link" type="submit" value="Upload">
+				</div>
+			</form>
+			
+			<!-- Return Button -->
+			<div class="content-centered">
+				<form action="/photos">
+					<input class="button-link" type="submit" value="Return">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

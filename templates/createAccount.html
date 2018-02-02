@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Create Account
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				You may create an account using the form below. 
+			</div>
+			
+			<!-- Form -->
+			<div class="content">
+				<form method="post">
+					<!-- First Name -->
+					<label>
+						<span class="login">First Name:</span>
+						<input class="textbox" type="text" name="firstName" value="{{ firstName }}">
+					</label>
+					<br>
+					
+					<!-- Last Name -->
+					<label>
+						<span class="login">Last Name:</span>
+						<input class="textbox" type="text" name="lastName" value="{{ lastName }}">
+					</label>
+					<br>
+					
+					<!-- Username -->
+					<label>
+						<span class="login">Username:</span>
+						<input class="textbox" type="text" name="username" value="{{ username }}">
+					</label>
+					<br>
+					
+					<!-- Password -->
+					<label>
+						<span class="login">Password:</span>
+						<input class="textbox" type="password" name="password">
+					</label>
+					<br>
+					
+					<!-- Password Verification -->
+					<label>
+						<span class="login">Verify Password:</span>
+						<input class="textbox" type="password" name="verify">
+					</label>
+					<br>
+					
+					<!-- Admin Status -->
+					<label>
+						<span class="login">Admin Status:</span>
+						<select class="textbox" name="adminStatus">
+							<!-- Admin -->
+							<option value="1"
+							{% if defaultAdminStatus == 1 %}
+								selected="selected"
+							{% endif %}
+							>Admin</option>
+							
+							<!-- Poster -->
+							<option value="2"
+							{% if defaultAdminStatus == 2 %}
+								selected="selected"
+							{% endif %}
+							>Poster</option>
+							
+							<!-- User -->
+							<option value="3"
+							{% if defaultAdminStatus == 3 %}
+								selected="selected"
+							{% endif %}
+							>User</option>
+						</select>
+					</label>
+					
+					<!-- Error -->
+					{% if error != '' %}
+						<div class="error">{{ error | safe }}</div>
+					{% endif %}
+					
+					<!-- Submit Button -->
+					<div style="text-align: center">
+						<input class="button-link" type="submit" name="createAccount" value="Create">
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

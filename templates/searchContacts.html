@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Search Contacts
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				Search for a contact by entering in any combination of first names, last names, positions,
+				emails, and phone numbers below.
+			</div>
+			
+			<!-- Search Form -->
+			<form>
+				<label>
+					<span class="login">Search Text:</span>
+					<input class="textbox" type="text" name="searchText" value="{{ searchText }}">
+				</label>
+				<br>		
+				<div class="content-centered">
+					<input class="button-link" type="submit" value="Search">
+				</div>
+				<br>
+			</form>
+			
+			{{ searchResults | safe }}
+				
+			<!-- Return Button -->
+			<div class="content-centered">
+				<form action="/contact">
+					<input class="button-link" type="submit" value="Return">
+				</form>
+			</div>			
+			
+			<!-- Footer Content -->
+			<div id="footer">
+				Can't find the contact your looking for? Please contact the web administrator.
+			</div>
+		</div>
+	</body>
+</html>

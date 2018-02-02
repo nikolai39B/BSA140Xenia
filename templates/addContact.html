@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Add Contact
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				You may add a contact using the form below. 
+			</div>
+					
+			<!-- Mandatory -->
+			<div class="content-centered">
+				*mandatory
+			</div>
+			
+			<!-- Form -->
+			<div class="content">
+				<form method="post">
+					<!-- Name -->
+					<div class="content-header">
+						Name and Position
+					</div>
+					
+					<!-- First Name -->
+					<label>
+						<span class="login">First Name*:</span>
+						<input class="textbox" type="text" name="firstName" value="{{ firstName }}">
+					</label>
+					<br>
+					
+					<!-- Last Name -->
+					<label>
+						<span class="login">Last Name*:</span>
+						<input class="textbox" type="text" name="lastName" value="{{ lastName }}">
+					</label>
+					<br>
+					
+					<!-- Position -->
+					<label>
+						<span class="login">Position:</span>
+						<input class="textbox" type="text" name="position" value="{{ position }}">
+					</label>
+					<br>
+					<br>
+					
+					<!-- Contact Info -->
+					<div class="content-header">
+						Phone and Email
+					</div>
+					
+					<!-- Cell Number -->
+					<label>
+						<span class="login">Cell Number:</span>
+						<input class="textbox" type="text" name="cellNumber" value="{{ cellNumber }}">
+					</label>
+					<br>
+					
+					<!-- Carrier (Deprecated) 
+					<label>
+						<span class="login">Cell Carrier:</span>
+						<select class="textbox" name="carrier">
+							{% for carrier in carriers %}
+								<option value="{{ carrier[1] }}"
+								{% if defaultCarrier == carrier[1] %}
+									selected="selected"
+								{% endif %}
+							>{{ carrier[1] }}</option>
+							{% endfor %}
+							
+						</select>
+					</label>
+					<br>-->
+					
+					<!-- Home Number -->
+					<label>
+						<span class="login">Home Number:</span>
+						<input class="textbox" type="text" name="homeNumber" value="{{ homeNumber }}">
+					</label>
+					<br>
+					
+					<!-- Email -->
+					<label>
+						<span class="login">Email:</span>
+						<input class="textbox" type="text" name="email" value="{{ email }}">
+					</label>
+					<br>
+					
+					<!-- Alt Email -->
+					<label>
+						<span class="login">Alternate Email:</span>
+						<input class="textbox" type="text" name="altEmail" value="{{ altEmail }}">
+					</label>
+					<br>
+					<br>
+					
+					<!-- Address -->
+					<div class="content-header">
+						Address
+					</div>
+					
+					<!-- Street -->
+					<label>
+						<span class="login">Street:</span>
+						<input class="textbox" type="text" name="street" value="{{ street }}">
+					</label>
+					<br>
+					
+					<!-- City -->
+					<label>
+						<span class="login">City:</span>
+						<input class="textbox" type="text" name="city" value="{{ city }}">
+					</label>
+					<br>
+					
+					<!-- State -->
+					<label>
+						<span class="login">State:</span>
+						<select class="textbox" name="state">
+							{% for state in states %}
+								<option value="{{ state }}"
+								{% if defaultState == state %}
+									selected="selected"
+								{% endif %}
+							>{{ state }}</option>
+							{% endfor %}
+							
+						</select>
+					</label>
+					<br>
+					
+					<!-- Zip Code -->
+					<label>
+						<span class="login">Zip Code:</span>
+						<input class="textbox" type="text" name="zip" value=
+						{% if zip != -1 and zip != 0 %}
+							"{{ zip }}"
+						{% else %}
+							""
+						{% endif %}
+						>
+					</label>
+					<br>
+					<br>
+					
+					<!-- Public -->
+					<label>
+						<span class="login">Public Contact:</span>
+						<input class="checkbox" type="checkbox" name="public" value="checked"
+						{% if public != "" and public != None %}
+							checked="{{ public }}"
+						{% endif %}>
+					</label>
+					<br>				
+					
+					<!-- Error -->
+					{% if error != '' %}
+						<div class="error">{{ error | safe }}</div>
+					{% endif %}
+					
+					<!-- Submit Button -->
+					<div style="text-align: center">
+						<input class="button-link" type="submit" name="createContact" value=
+						{% if createNew %}
+							"Create"
+						{% else %}
+							"Update"
+						{% endif %}>
+					</div>
+			
+				</form>					
+				
+				<!-- Return Button -->
+				<div class="content-centered">
+					<form action="/contact">
+						<input class="button-link" type="submit" value="Return">
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

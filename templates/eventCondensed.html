@@ -1,0 +1,14 @@
+<div class="event">
+	<!-- Date -->
+	<span class="event-date-condensed" >
+		{{ event.departureTime.month }}/{{ event.departureTime.day }}/{{ event.departureTime.year }}
+	</span>
+	
+	<!-- Time -->
+	<span class="event-time-condensed">
+		{{ event.departureTime.hour}}:{{ '%02d' % event.departureTime.minute }} {{ departureTimeMeridiem }}
+	</span>
+	
+	<!-- Event Name -->
+	<a href="/event/{{ event.key().id() }}">{{ event.name }}</a>
+</div>

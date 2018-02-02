@@ -1,0 +1,22 @@
+<div class="content-header">
+	{{ file.title }}<br>
+</div>
+{% if file.description != '' and file.description != None %}
+	<div class="content">	
+		<span class="tab"></span>{{ file.description }}
+	</div>
+{% endif %}
+{% if displayFilebar == None or displayFilebar %}
+	<div id="photobar">
+		<!-- Filebar Links -->
+		{% if adminStatus <= 3 %} <!-- logged in -->
+			<a class="topbar-link" href="/download_file/{{ file.key().id() }}">Download File</a>
+		{% endif %}
+		{% if adminStatus <= 2 %} <!-- owner, admin, or poster -->
+			 | <!-- this pipe is here to separate "Download File" and "Edit File" -->
+			<a class="topbar-link" href="/edit_file/{{ file.key().id() }}">Edit File</a> | 
+			<a class="topbar-link" href="/delete_file/{{ file.key().id() }}">Delete File</a>
+		{% endif %}
+	</div>
+{% endif %}
+<br>

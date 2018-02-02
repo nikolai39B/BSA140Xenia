@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Links
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				Please explore the links below to learn more about Troop 140 and our events.
+			</div>
+			
+			{{ links | safe }}
+					
+			<!-- Add / Edit Link -->
+			{% if adminStatus <= 2 %} <!-- owner, admin, or poster -->
+				
+				<div class="content">
+					<form method="post">
+						<div class="content-header">
+							{% if newLink %}
+								Add
+							{% else %}
+								Edit
+							{% endif %}
+							Link
+						</div>
+					
+						<!-- Title -->
+						<label>
+							<span class="login">Title:</span>
+							<input class="textbox" type="text" name="title" value="{{ title }}">
+						</label>
+						<br>	
+					
+						<!-- Public -->
+						<label>
+							<span class="login">Public:</span>
+							<input class="checkbox" type="checkbox" name="public" value="checked"
+							{% if public != "" and public != False %}
+								checked="{{ public }}"
+							{% endif %}>
+						</label>
+						<br>
+						
+						<!-- Link -->
+						<label>
+							<span class="login-two">Link:</span>
+							<input class="textbox-wide" type="text" name="link" value="{{ link }}">
+						</label>
+						<br>
+
+						<!-- Description -->
+						<label>
+							<span class="login-two">Description:</span>
+							<textarea class="textarea" name="description">{{ description }}</textarea>
+						</label>	
+						
+						<!-- Submit Button -->
+						<div style="text-align: center">
+							<input class="button-link" type="submit" name="addLink" value="Save">
+						</div>					
+						
+						<!-- Error -->
+						{% if error != '' %}
+							<div class="error">{{ error | safe }}</div>
+						{% endif %}
+				
+					</form>
+				</div>
+			{% endif %}
+		</div>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Contacts
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				Listed below is the contact information for our adult leaders. Feel free to contact them
+				with any questions or comments you may have!
+			</div>
+			
+			<!-- Add Contact Button -->
+			{% if adminStatus <= 2 %} <!-- owner, admin, or poster -->
+				<div class="content-centered">
+					<form action="/add_contact">
+						<input class="button-link" type="submit" value="Add Contact">
+					</form>
+				</div>
+			{% endif %}
+			
+			<!-- Search Contacts Button -->
+			<div class="content-centered">
+				<form action="/search_contacts">
+					<input class="button-link" type="submit" value="Search">
+				</form>
+			</div>
+			
+			{{ contactHtml | safe }}			
+			
+			<!-- Footer Content -->
+			<br>
+			<div id="footer">
+				Searching for a specific contact? Try the search button at the top of the page.
+			</div>
+		</div>
+	</body>
+</html>

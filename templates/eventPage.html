@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Events
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			{% if error == '' %}
+				<!-- Header Content -->
+				<div id="header">
+					Looks like fun, huh? Feel free to browse some of our other events as well!
+				</div>
+			
+				<!-- Add Photos Button -->
+				{% if adminStatus <= 2 %} <!-- owner, admin, or poster -->
+					<div class="content-centered">
+						<form action="/add_photos/{{ eventId }}">
+							<input class="button-link" type="submit" value="Add Photos">
+						</form>
+					</div>
+				{% endif %}
+				
+				<!-- Event and Photos -->
+				<div class="content">
+					{{ eventBlock | safe }}
+				</div>
+			{% else %}
+				<!-- Error -->
+				<div class="error">
+					{{ error }}
+				</div>
+			{% endif %}
+			
+			<!-- Return Button -->
+			<div class="content-centered">
+				<form action="/events">
+					<input class="button-link" type="submit" value="Return">
+				</form>
+			</div>
+			
+			<!-- Footer Content -->
+			<div id="footer">
+				For more information on this event please contact one of our adult leaders.
+			</div>
+		</div>
+	</body>
+</html>

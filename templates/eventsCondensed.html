@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Events
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				Listed below are the past and upcoming events that we have. We hope you can join us on
+				our adventures!
+			</div>
+			
+			<!-- Add Event Button -->
+			{% if adminStatus <= 2 %} <!-- owner, admin, or poster -->
+				<div class="content-centered">
+					<form action="/new_event">
+						<input class="button-link" type="submit" value="Add Event">
+					</form>
+				</div>
+			{% endif %}
+			
+			<!-- More Button -->
+			<div class="content-centered">
+				<form action="/events">
+					<input class="button-link" type="submit" value="More">
+				</form>
+			</div>
+			
+			<!-- Upcoming Events -->
+			<div class="content-header">Upcoming Events</div>
+			<div class="content">
+				{{ events | safe }}
+			</div>
+			
+			<!-- Footer Content -->
+			<div id="footer">
+				For more information on past or future events please contact one of our adult leaders.
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Home Page
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				Welcome to the Troop 140 Homepage! We invite you to explore	what we have to offer.
+			</div>
+			
+			<!-- Main Content -->			
+			<form action="/photo/{{ photo0.blobKey }}">
+				<input type="image" class="content-image" src="{{ photo0.imageUrl }}" />
+			</form>
+			
+			<div class="content-header">
+				Overview
+			</div>
+			<div class="content">
+				The Boy Scouts of America was incorporated to provide a program for community 
+				organizations that offers effective character, citizenship, and personal fitness 
+				training for youth.<br>
+				<br>
+				BSA strives to develop American citizens who:<br>
+				<span class="tab"></span>- are physically, mentally, and emotionally fit<br>
+				<span class="tab"></span>- have a high degree of self-reliance as evidenced by their
+				initiative, courage, and resourcefulness<br>
+				<span class="tab"></span>- have the desire and skills to help others<br>
+				<span class="tab"></span>- understand the principles of the American social, economic, and 
+				governmental systems<br>
+				<span class="tab"></span>- are knowledgeable about their American heritage and understand our
+				nation's role in the world<br>
+				<span class="tab"></span>- have a keen respect for the basic rights of all people<br>
+				<span class="tab"></span>- are prepared to participate in and give leadership to 
+				American society.
+			</div>
+			
+			<form action="/photo/{{ photo1.blobKey }}">
+				<input type="image" class="content-image" src="{{ photo1.imageUrl }}" />
+			</form>
+				
+			<div class="content-header">
+				Mission
+			</div>
+			<div class="content">
+				Our mission is to train young scouts to become active citizens, good leaders, and 
+				great men who live by the Scout Law.
+			</div>
+							
+			<div class="content-header">
+				Leadership
+			</div>
+			<div class="content">
+				We are a first and foremost a youth lead troop. All activities are planned and executed by
+				the scouts themselves during monthly junior leader meetings. Each scout has	the opportunity
+				to contribute to the operations of the troop and help plan upcoming events. Adult 
+				participation in these meetings is limited to an advisory role.
+			</div>
+			
+			<form action="/photo/{{ photo2.blobKey }}">
+				<input type="image" class="content-image" src="{{ photo2.imageUrl }}" />
+			</form>
+
+						
+			<div class="content-header">
+				General Information
+			</div>
+			<div class="content">
+				<div style="text-align: center">
+					Chillicothe District - Tecumseh Council<br>
+					St. Brigid Parish<br>
+					312 Fairground Rd.<br>
+					Xenia, OH 45385
+				</div>
+				<br>
+				Our meetings take place Sundays at St. Brigid Parish in the lunchroom from 6:30
+                to 8:00. We welcome anyone who is interested in joining!
+			</div>
+			
+			<!-- Footer Content -->
+			<div id="footer">
+				Want to get in contact with us? Please click the Contact button below.
+			</div>
+			
+			<!-- Contact Button -->
+			<div class="content-centered">
+				<form action="/contact">
+					<input class="button-link" type="submit" value="Contact">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

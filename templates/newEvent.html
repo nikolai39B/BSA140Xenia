@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Add Event
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				You may add or edit an event using the form below. 
+			</div>
+			
+			<!-- Main Content -->
+			<div class="content">
+				<form method="post">
+					<label>
+						<span class="login">Event Name:</span>
+						<input class="textbox" type="text" name="name" value="{{ name }}">
+					</label>
+					<br>
+					<label>
+						<span class="login">Spotlight:</span>
+						<input class="checkbox" type="checkbox" name="spotlight" value="checked"
+						{% if spotlight != "" %}
+							checked="{{ spotlight }}"
+						{% endif %}>
+					</label>
+					<br>
+					<label>
+						<span class="login">Departure Time:</span>
+						<input class="textbox" type="datetime-local" name="departureTime" value="{{ departureTime }}">
+					</label>
+					<br>
+					<label>
+						<span class="login">Return Time:</span>
+						<input class="textbox" type="datetime-local" name="returnTime" value="{{ returnTime }}">
+					</label>
+					<br>
+					<label>
+						<span class="login">Meet Location:</span>
+						<input class="textbox" type="text" name="meetLocation" value="{{ meetLocation }}">
+					</label>
+					<br>
+					<label>
+						<span class="login">Outing Location:</span>
+						<input class="textbox" type="text" name="outingLocation" value="{{ outingLocation }}">
+					</label>
+					<br>
+					<label>
+						<span class="login-two">Description:</span>
+						<textarea class="textarea" name="description">{{ description }}</textarea>
+					</label>
+					<br>
+					<input type="hidden" name="eventId" value="{{ eventId }}">
+					
+					
+					{% if error != '' %}
+						<div class="error">{{ error | safe }}</div>
+					{% endif %}
+					<div style="text-align: center">
+						<input class="button-link" type="submit" name="createAccount"
+						{% if editing %}
+							value="Save"
+						{% else %}
+							value="Create"
+						{% endif %}>
+					</div>
+				</form>
+				
+				<!-- Return Button -->
+				<div class="content-centered">
+					<form action="/events">
+						<input class="button-link" type="submit" value="Return">
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

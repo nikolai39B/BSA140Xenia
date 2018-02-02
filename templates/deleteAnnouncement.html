@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Delete Announcement
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Main Content -->
+			{% if error == '' %}
+				<div id="header">
+					Are you sure that you wish to delete this announcement?
+				</div>
+				
+				{{ announcement | safe }}
+				
+				<!-- Delete Photo Button -->
+				<div class="content-centered">
+					<form method="post">
+						<input class="button-link" type="submit" value="Delete">
+					</form>
+				</div>
+				
+			<!-- Error -->
+			{% else %}
+				<div class="content-centered">
+					<div class="error">{{ error }}</div>
+				</div>
+			{% endif %}
+			
+			<!-- Return Button -->
+			<div class="content-centered">
+				<form action="/announcements">
+					<input class="button-link" type="submit" value="Return">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<div class="content-header">
+	{{ name }}
+</div>
+<div class="content-centered">
+	<!-- Cell Phone	(deprecated) 
+	<span style="width: 150px; display: inline-block">
+		{% if displayCell %}
+		<label>
+			Cell Phone:
+			<input class="checkbox" type="checkbox" name="cell{{ id }}" value="checked"
+			{% if cell != "" and cell != False %}
+				checked="{{ cell }}"
+			{% endif %}>
+		</label>
+		{% endif %}
+	</span>-->
+	
+	<!-- Email -->
+	<span style="width: 150px; display: inline-block">
+		{% if displayEmail %}
+		<label>
+			Email:
+			<input class="checkbox" type="checkbox" name="email{{ id }}" value="checked"
+			{% if email != "" and email != False %}
+				checked="{{ email }}"
+			{% endif %}>
+		</label>
+		{% endif %}
+	</span>
+	
+	<!-- Alt Email -->	
+	<span style="width: 150px; display: inline-block">
+		{% if displayAltEmail %}
+		<label>
+			Alt Email:
+			<input class="checkbox" type="checkbox" name="altEmail{{ id }}" value="checked"
+			{% if altEmail != "" and altEmail != False %}
+				checked="{{ altEmail }}"
+			{% endif %}>
+		</label>
+		{% endif %}
+	</span>
+</div>
+<br>

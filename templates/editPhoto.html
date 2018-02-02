@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Edit Photo
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			{% if error == '' %}
+				<div id="header">
+					You may edit the details for this photo using the form below.
+				</div>
+				
+				<!-- Photo -->
+				<form action="/photo/{{ photoId }}">
+					<input type="image" class="content-image" src="{{ imageUrl }}" />
+				</form>
+			
+				<!-- Photo Edit Form -->
+				<form method="post">
+					<!-- Title -->
+					<label>
+						<span class="login">Title:</span>
+						<input class="textbox" type="text" name="title" value="{{ title }}">
+					</label>
+					<br>
+					
+					<!-- Spotlight -->
+					<label>
+						<span class="login">Spotlight:</span>
+						<input class="checkbox" type="checkbox" name="spotlight" value="checked"
+						{% if spotlight != "" %}
+							checked="{{ spotlight }}"
+						{% endif %}>
+					</label>
+					<br>
+					
+					<!-- Event -->
+					<label>
+						<span class="login">Event:</span>
+						<select class="textbox" name="eventId">
+							{{ options | safe }}
+						</select>
+					</label>
+					<br>
+					
+					<!-- Time -->
+					<label>
+						<span class="login">Time:</span>
+						<input class="textbox" type="datetime-local" name="time" value="{{ time }}">
+					</label>
+					<br>
+					
+					<!-- Description -->
+					<label>
+						<span class="login-two">Description:</span>
+						<textarea class="textarea" name="description">{{ description }}</textarea>
+					</label>
+					<div class="content-centered">
+						<input class="button-link" type="submit" value="Save">
+					</div>
+				</form>
+			{% else %}
+				<!-- Error Message -->
+				<div class="content-centered">
+					<div class="error">{{ error }}</div>
+				</div>
+			{% endif %}
+			
+			<!-- Return Button -->
+			<div class="content-centered">
+				<form action="/photos#{{ photoId }}">
+					<input class="button-link" type="submit" value="Return">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

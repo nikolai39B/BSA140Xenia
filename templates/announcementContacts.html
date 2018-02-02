@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Announcement Contacts
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				You may select which individuals will receive announcement alerts below.
+			</div>
+			
+			<!-- Edit Announcement Contacts -->
+			<div class="content">
+				<form method="post">
+					{{ announcementContacts | safe }}
+
+					<!-- Submit Button -->
+					<div style="text-align: center">
+						<input class="button-link" type="submit" name="save" value="Save">
+					</div>			
+				</form>
+			</div>
+			
+			<!-- Return Button -->
+			<div class="content-centered">
+				<form action="/announcements">
+					<input class="button-link" type="submit" value="Return">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

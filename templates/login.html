@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="../stylesheets/main.css" rel="stylesheet" type="text/css">
+		<title>BSA 140 Xenia</title>
+	</head>
+	
+	<body>
+		<h1 class="header">
+			BSA 140 Xenia Login
+			<div id="welcome">
+				Welcome, {{ user }}!
+			</div>
+		</h1>
+		
+		{{ topbar | safe }}
+		
+		<div class="container">
+			{{ sidebar | safe }}
+			
+			<!-- Header Content -->
+			<div id="header">
+				Please log in using the form below. If you do not remember your account info or do not
+				have an account please contact the web administrator.
+			</div>
+			
+			<!-- Main Content -->
+			<div class="content">
+				<form method="post">
+					<label>
+						<span class="login">Username:</span>
+						<input class="textbox" type="text" name="username" value="{{ username }}">
+					</label>
+					<br>
+					<label>
+						<span class="login">Password:</span>
+						<input class="textbox" type="password" name="password">
+					</label>
+					<br>
+					<label>
+						<span class="login">Stay Logged In:</span>
+						<input class="checkbox" type="checkbox" name="stayLoggedIn" value="checked"
+						{% if stayLoggedIn != "" %}
+							checked="{{ stayLoggedIn }}"
+						{% endif %}>
+					</label>
+					{% if error != '' %}
+						<div class="error">{{error}}</div>
+					{% endif %}
+					<div style="text-align: center">
+						<input class="button-link" type="submit" name="Login" value="Login">
+					</div>
+				</form>
+			</div>
+			
+			<!-- Footer Content -->
+			<div id="footer">
+				Issues logging in? Please contact the web administrator from the contact page.
+			</div>
+		</div>
+	</body>
+</html>
